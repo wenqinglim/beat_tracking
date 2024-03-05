@@ -5,6 +5,10 @@ from scipy.signal import windows, convolve
 
 
 def beatTracker(input_file):
+    """
+    Wrapper function to call beat tracker
+    
+    """
     bt = ellisBeatTracker()
     beats, downbeats = bt(input_file)
     return beats, downbeats
@@ -110,10 +114,6 @@ class ellisBeatTracker():
             plt.plot(filtered_norm[:2800])
 
         self.onset_env = filtered_norm
-        
-        # self.onset_env = librosa.onset.onset_strength(y=snd_8k, sr=8000,
-        #                                               hop_length=int(self.rate*self.hop_time), 
-        #                                               aggregate=np.median)
 
     def _tps(self, i):
         """
